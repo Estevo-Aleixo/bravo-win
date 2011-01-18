@@ -45,4 +45,7 @@ setup(
 import os
 if os.path.exists('dist/Bravo.exe'):
     os.remove('dist/Bravo.exe')
+if os.path.exists('dist/bravo.ini'):
+    os.remove('dist/bravo.ini')
 os.rename('dist/main.exe','dist/Bravo.exe')
+os.rename('dist/bravo.ini.example','dist/bravo.ini')
