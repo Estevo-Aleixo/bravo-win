@@ -50,7 +50,7 @@ fancy_console = true
 # Which serializer to use for saving worlds to disk.
 # ~ alpha: The Alpha NBT format
 # ~ json: JSON format, for debugging
-serializer = json
+serializer = NBT
 
 [world example]
 # This is just an example world. World names come from the name of the
@@ -63,4 +63,4 @@ port = 25565
 # The folder to use for storing the world. Make sure you have write
 # permissions to this folder. If it does not exist, it will be created.
 # Relative paths are allowed but discouraged.
-path = example-world
+path = world

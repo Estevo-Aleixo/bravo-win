@@ -5,7 +5,7 @@ import py2exe
 
 setup(
     name="Bravo",
-    version="1.0",
+    version="1.1",
     install_requires=[
         "numpy",
         "construct>=2.03",
