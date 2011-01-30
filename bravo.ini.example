@@ -57,7 +57,7 @@ port = 25565
 # The folder to use for storing the world. Make sure you have write
 # permissions to this folder. If it does not exist, it will be created.
 # Relative paths are allowed but discouraged.
-path = example-world
+path = world
 
 # Authenticator. There are only two options:
 # ~ offline: anybody can log in, no authentication is done
