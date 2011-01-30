@@ -5,7 +5,7 @@ import py2exe
 
 setup(
     name="Bravo",
-    version="1.1",
+    version="1.2",
     install_requires=[
         "numpy",
         "construct>=2.03",
@@ -24,7 +24,9 @@ setup(
 		'py2exe':{
             'excludes':['pywin', 'pywin.debugger', 'pywin.debugger.dbgcon', 'pywin.dialogs', 'pywin.dialogs.list', 'Tkconstants','Tkinter','tcl',],
 			'dll_excludes':['mswsock.dll','powrprof.dll',],
-            'includes':['bravo.plugins.authenticators',
+            'includes':['bravo.factories.beta',
+                        'bravo.factories.infini',
+                        'bravo.plugins.authenticators',
                         'bravo.plugins.build_hooks',
                         'bravo.plugins.commands',
                         'bravo.plugins.compound_hooks',
@@ -34,7 +36,11 @@ setup(
                         'bravo.plugins.physics',
                         'bravo.plugins.recipes',
                         'bravo.plugins.seasons',
-                        'bravo.plugins.warp'],
+                        'bravo.plugins.warp',
+                        'bravo.protocols.beta',
+                        'bravo.protocols.infini',
+                        'bravo.serializers.alpha',
+                        'bravo.serializers.json',],
 			'compressed':True,
 			'bundle_files':1,
 			'packages':['twisted','simplejson',],
