@@ -40,7 +40,7 @@ setup(
                         'bravo.protocols.beta',
                         'bravo.protocols.infini',
                         'bravo.serializers.alpha',
-                        'bravo.serializers.json',],
+                        'bravo.serializers.json_serializer',],
 			'compressed':True,
 			'bundle_files':1,
 			'packages':['twisted','simplejson',],
