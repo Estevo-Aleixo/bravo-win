@@ -1,2 +1,3 @@
 build/*
 dist/*
+win64-installer/*.exe
