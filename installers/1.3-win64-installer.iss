@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Bravo"
-#define MyAppVersion "1.4-dev"
+#define MyAppVersion "1.3"
 #define MyAppURL "http://win32.bravoserver.org"
 #define MyAppExeName "Bravo.exe"
 
@@ -10,20 +10,19 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{47CBF496-DBA1-4205-AB72-D910FD50BD21}
+AppId={{F3D7976D-A123-4745-9C36-ADA3B82CF17F}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-ArchitecturesAllowed=x86 x64
+ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-AllowNoIcons=yes
-OutputDir=C:\Users\Justin\Desktop\gold\bravo-win\win64-installer
-OutputBaseFilename=bravo-1.4-dev-win-amd64
+OutputDir=C:\Users\Justin\Desktop\gold\bravo-win\installers\1.3
+OutputBaseFilename=Bravo-1.3-amd64
 Compression=lzma
 SolidCompression=yes
 
@@ -32,7 +31,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: checkedonce
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\Bravo.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -76,8 +74,7 @@ Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\zope.int
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: {app}; Parameters: "-ny ""{app}\bravo.tac"""; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Parameters: "-ny ""{app}\bravo.tac"""; Flags: shellexec postinstall skipifsilent
 
