@@ -39,7 +39,7 @@ Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\_hashlib.pyd
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\bravo.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\bravo.ini"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\bravo.ini"; DestDir: "{userappdata}\bravo"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\bravo.tac"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win32-2.7\library.zip"; DestDir: "{app}"; Flags: ignoreversion
@@ -78,3 +78,33 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Working
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Parameters: "-ny ""{app}\bravo.tac"""; Flags: shellexec postinstall skipifsilent
+
+[Code]
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  BravoConfig: string;
+var
+  World: string;
+begin
+  if CurStep = ssDone then
+  begin
+    BravoConfig := ExpandConstant('{userappdata}\bravo\bravo.ini');
+    World := ExpandConstant('{userappdata}\bravo\world');
+    SaveStringToFile(BravoConfig, 'url = file:///'+World, True)
+  end;
+end;
+
+procedure CurUninstallStepChanged (CurUninstallStep: TUninstallStep);
+var
+  mres : integer;
+begin
+  case CurUninstallStep of
+    usPostUninstall:
+      begin
+        mres := MsgBox('Do you want to delete saved files?', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)
+        if mres = IDYES then
+          DelTree(ExpandConstant('{app}'), True, True, True);
+          DelTree(ExpandConstant('{userappdata}\bravo'), True, True, True);
+      end;  
+  end;
+end;
