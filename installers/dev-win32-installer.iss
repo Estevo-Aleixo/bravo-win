@@ -90,7 +90,7 @@ begin
   begin
     BravoConfig := ExpandConstant('{userappdata}\bravo\bravo.ini');
     World := ExpandConstant('{userappdata}\bravo\world');
-    SaveStringToFile(BravoConfig, 'url = file:///'+World, True)
+    SaveStringToFile(BravoConfig, 'url = file://'+World, True)
   end;
 end;
 

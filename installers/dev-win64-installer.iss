@@ -44,7 +44,6 @@ Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\bravo.in
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\bravo.tac"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\library.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\numpy.core._dotbias.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\numpy.core._sort.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\numpy.core.multiarray.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Justin\Desktop\gold\bravo-win\build\exe.win-amd64-2.7\numpy.core.scalarmath.pyd"; DestDir: "{app}"; Flags: ignoreversion
@@ -91,7 +90,7 @@ begin
   begin
     BravoConfig := ExpandConstant('{userappdata}\bravo\bravo.ini');
     World := ExpandConstant('{userappdata}\bravo\world');
-    SaveStringToFile(BravoConfig, 'url = file:///'+World, True)
+    SaveStringToFile(BravoConfig, 'url = file://'+World, True)
   end;
 end;
 
