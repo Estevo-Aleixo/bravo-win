@@ -83,13 +83,23 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   BravoConfig: string;
-var
   World: string;
+  fSlash: char;
+  bSlash: char;
+  x: integer;
 begin
   if CurStep = ssDone then
   begin
     BravoConfig := ExpandConstant('{userappdata}\bravo\bravo.ini');
     World := ExpandConstant('{userappdata}\bravo\world');
+    bSlash := '\';
+    fSlash := '/';
+    for x := 1 to Length(World) do
+      begin
+        if World[x] = bSlash then begin
+          World[x] := fSlash;
+        end;
+    end;
     SaveStringToFile(BravoConfig, 'url = file://'+World, True)
   end;
 end;
@@ -101,7 +111,7 @@ begin
   case CurUninstallStep of
     usPostUninstall:
       begin
-        mres := MsgBox('Do you want to delete saved files?', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)
+        mres := MsgBox('Do you want to delete bravo.ini and world data?', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)
         if mres = IDYES then
           DelTree(ExpandConstant('{app}'), True, True, True);
           DelTree(ExpandConstant('{userappdata}\bravo'), True, True, True);
